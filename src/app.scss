@@ -1,0 +1,26 @@
+.topBar {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  background-color: aqua;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.movie-content-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.grid-container {
+  max-width: 900px;
+}
