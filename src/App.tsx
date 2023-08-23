@@ -1,7 +1,15 @@
 import Card from "./components/Card";
 
 import "./app.scss";
-import { TextField, Grid, Pagination } from "@mui/material";
+import {
+  TextField,
+  Grid,
+  Pagination,
+  Select,
+  FormControl,
+  InputLabel,
+  MenuItem,
+} from "@mui/material";
 
 import { AppDispatch, RootState } from "./store/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,6 +32,9 @@ function App() {
     type: "",
     pageNumber: 1,
   });
+
+  const [type, setType] = useState(null);
+
   const movies = useSelector((state: RootState) => state.streams);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -37,6 +48,17 @@ function App() {
       year: searchTerms.year,
       type: searchTerms.type,
       pageNumber: value,
+    });
+  };
+
+  const handleChangeType = (event: any) => {
+    setType(event.target.value);
+
+    setSearchTerms({
+      title: searchTerms.title,
+      year: searchTerms.year,
+      type: event.target.value,
+      pageNumber: searchTerms.pageNumber,
     });
   };
 
@@ -70,18 +92,27 @@ function App() {
             });
           }}
         />
-        <TextField
+        <FormControl sx={{ minWidth: 240 }}>
+          <InputLabel id="demo-simple-select-label">Episodes</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={type}
+            label="Episodes"
+            onChange={handleChangeType}
+            size="small"
+          >
+            <MenuItem value={"movie"}>Movie</MenuItem>
+            <MenuItem value={"series"}>Series</MenuItem>
+          </Select>
+        </FormControl>
+        {/* <Select
           size="small"
           placeholder="Search by Type"
           onChange={(e) => {
-            setSearchTerms({
-              title: searchTerms.title,
-              year: searchTerms.year,
-              type: e.target.value,
-              pageNumber: searchTerms.pageNumber,
-            });
+           
           }}
-        />
+        /> */}
       </div>
       <div className="movie-content-area">
         <Grid container spacing={2} className="grid-container">

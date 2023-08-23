@@ -76,7 +76,7 @@ function StreamDetail() {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Title (100g serving)</TableCell>
+                    <TableCell>Title</TableCell>
                     <TableCell>Runtime&nbsp;(min)</TableCell>
                     <TableCell>Genre</TableCell>
                     <TableCell>Directors</TableCell>
@@ -102,84 +102,94 @@ function StreamDetail() {
               </Table>
             </TableContainer>
           ) : (
-            <div className="searchBar">
-              <FormControl sx={{ minWidth: 240 }}>
-                <InputLabel id="demo-simple-select-label">Seasons</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={selectedSeason}
-                  label="Seasons"
-                  onChange={handleChange}
-                >
-                  {a.map((val: any, index: any) => {
-                    return (
-                      <MenuItem value={val} key={index}>
-                        {val + 1}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-              <FormControl sx={{ minWidth: 240 }}>
-                <InputLabel id="demo-simple-select-label">Episodes</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={selectedEpisode}
-                  label="Episodes"
-                  onChange={handeEpisodeChange}
-                >
-                  {seriesDetail.seriesDetail != null &&
-                    seriesDetail.seriesDetail.Episodes.map(
-                      (val: any, index: any) => {
-                        return (
-                          <MenuItem value={val.Episode} key={index}>
-                            {parseInt(val.Episode) + 1}
-                          </MenuItem>
-                        );
-                      }
-                    )}
-                </Select>
-              </FormControl>
-            </div>
-          )}
-          {seriesDetail.selectedEpisode && (
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Title (100g serving)</TableCell>
-                    <TableCell>Runtime&nbsp;(min)</TableCell>
-                    <TableCell>Genre</TableCell>
-                    <TableCell>Directors</TableCell>
-                    <TableCell>Actors</TableCell>
-                    <TableCell>IMDB Rating</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow
-                    key={seriesDetail.selectedEpisode.Title}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            <>
+              <div className="searchBar">
+                <FormControl sx={{ minWidth: 240 }}>
+                  <InputLabel id="demo-simple-select-label">Seasons</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={selectedSeason}
+                    label="Seasons"
+                    onChange={handleChange}
                   >
-                    <TableCell component="th" scope="row">
-                      {seriesDetail.selectedEpisode.Title}
-                    </TableCell>
-                    <TableCell>
-                      {seriesDetail.selectedEpisode.Runtime}
-                    </TableCell>
-                    <TableCell>{seriesDetail.selectedEpisode.Genre}</TableCell>
-                    <TableCell>
-                      {seriesDetail.selectedEpisode.Director}
-                    </TableCell>
-                    <TableCell>{seriesDetail.selectedEpisode.Actors}</TableCell>
-                    <TableCell>
-                      {seriesDetail.selectedEpisode.imdbRating}
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+                    {a.map((val: any, index: any) => {
+                      return (
+                        <MenuItem value={val} key={index}>
+                          {val + 1}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ minWidth: 240 }}>
+                  <InputLabel id="demo-simple-select-label">
+                    Episodes
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={selectedEpisode}
+                    label="Episodes"
+                    onChange={handeEpisodeChange}
+                  >
+                    {seriesDetail.seriesDetail != null &&
+                      seriesDetail.seriesDetail.Episodes.map(
+                        (val: any, index: any) => {
+                          return (
+                            <MenuItem value={val.Episode} key={index}>
+                              {parseInt(val.Episode) + 1}
+                            </MenuItem>
+                          );
+                        }
+                      )}
+                  </Select>
+                </FormControl>
+              </div>
+              {seriesDetail.selectedEpisode && (
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Title</TableCell>
+                        <TableCell>Runtime&nbsp;(min)</TableCell>
+                        <TableCell>Genre</TableCell>
+                        <TableCell>Directors</TableCell>
+                        <TableCell>Actors</TableCell>
+                        <TableCell>IMDB Rating</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow
+                        key={seriesDetail.selectedEpisode.Title}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {seriesDetail.selectedEpisode.Title}
+                        </TableCell>
+                        <TableCell>
+                          {seriesDetail.selectedEpisode.Runtime}
+                        </TableCell>
+                        <TableCell>
+                          {seriesDetail.selectedEpisode.Genre}
+                        </TableCell>
+                        <TableCell>
+                          {seriesDetail.selectedEpisode.Director}
+                        </TableCell>
+                        <TableCell>
+                          {seriesDetail.selectedEpisode.Actors}
+                        </TableCell>
+                        <TableCell>
+                          {seriesDetail.selectedEpisode.imdbRating}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
+            </>
           )}
         </>
       )}

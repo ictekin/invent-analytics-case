@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 
 import { fetchStreamDetail } from "../store/slices/streamDetailSlice";
 
+import { clearState } from "../store/slices/seriesDetailSlice";
+
 interface MovieCardState {
   title: string;
   year: string;
@@ -30,6 +32,7 @@ function MovieCard(props: MovieCardState) {
       sx={{ maxWidth: 345, height: 450 }}
       onClick={() => {
         dispatch(fetchStreamDetail({ title: props.title, type: props.type }));
+        dispatch(clearState());
         navigate(`/detail/${props.title}`);
       }}
     >

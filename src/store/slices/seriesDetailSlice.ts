@@ -48,7 +48,12 @@ export const fetchSelectedEpisode = createAsyncThunk(
 const streamDetailSlice = createSlice({
   name: "series",
   initialState,
-  reducers: {},
+  reducers: {
+    clearState(state) {
+      state.seriesDetail = null;
+      state.selectedEpisode = null;
+    },
+  },
   extraReducers: (builder) => {
     //pending and refected cases not added.
     builder.addCase(fetchSeries.fulfilled, (state, action) => {
@@ -60,4 +65,5 @@ const streamDetailSlice = createSlice({
   },
 });
 
+export const { clearState } = streamDetailSlice.actions;
 export default streamDetailSlice.reducer;
